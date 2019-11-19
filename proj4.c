@@ -6,6 +6,17 @@ void step2(string name1,string name2);
 int main(int argc, char *argv[]){
 
 }//main
+long int findSize(const char *file_name)
+{
+    struct stat st; /*declare stat variable*/
+     
+    /*get the size using stat()*/
+     
+    if(stat(file_name,&st)==0)
+        return (st.st_size);
+    else
+        return -1;
+}
 void step2(string name1,string name2){
     int index=0;
     int line=0;
@@ -17,19 +28,26 @@ void step2(string name1,string name2){
     }
     char file1=getc(input1);
     char file2=getc(input2);
-    while((file1!=EOF)&&(file2!=EOF)){
-        index++;
-        if(file1!=file2){
-            //write difference into other file
-            write("differencesFoundInFile1.txt");
+    char arr1[]=new char[findSize(name1)];
+    char arr2[]=new char[findSize(name2)];
+    int count1=0;
+    int count2=0;
+    while((file1!=EOF)){
+        arr1[count1]=file1;//gets each char from the file and adds to array;
+        file1=getc(input1);//gets next char
+    }
+    while(file2!=EOF){
+        arr2[count2]=file2;//gets each char from the file and adds to array;
+        file2=getc(input2);//gets next char
+    }
+    size_t size1 = sizeof(arr1)/sizeof(arr1[0]);
+    size_t size2 = sizeof(arr2)/sizeof(arr2[0]);
+    if(size1>size2){
+        for(int i=0;i<size1;i++){
+            if(arr1[i]!=arr2[i]){
+
+            }
         }
-        //delete after
-        if(file1=='\n'&&file2=='\n'){
-            index=0;
-            line++;
-        }
-        file1 = getc(input1); 
-        file2 = getc(input2);
     }
     fclose(input1);
     fclose(input2);
