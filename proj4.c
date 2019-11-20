@@ -5,11 +5,11 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <stdlib.h>
-void step2(const char *name1,const char *name2);
+void step2(int argc,const char *name1,const char *name2);
 int main(int argc, char *argv[]){
     char *name1=argv[1];
     char *name2=argv[2];
-    step2(name1,name2);
+    step2(argc,name1,name2);
 }//main
 long int findSize(const char *file_name)
 {
@@ -22,13 +22,18 @@ long int findSize(const char *file_name)
     else
         return -1;
 }
-void step2(const char *name1,const char *name2){
+void step2(int argc,const char *name1,const char *name2){
     char *differencesInFile2;
     FILE *input1=fopen(name1,"r");//opened the files
     FILE *input2=fopen(name2,"r");
     //error message
-    if(input1==NULL||input2==NULL){
+    if((input1==NULL||input2==NULL)&&(argc==3)){
         printf("There was an error reading a file.\n");
+	exit(0);
+    }
+    if(argc!=3){
+      printf("Usage: proj4.out <file1> <file2>\n");
+      exit(0);
     }
     char char1=getc(input1);
     char char2=getc(input2);
