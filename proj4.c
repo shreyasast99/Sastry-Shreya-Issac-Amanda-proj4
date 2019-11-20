@@ -1,17 +1,33 @@
 /*
 
- */
+*/
 #include <stdio.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <stdlib.h>
 void step2(int argc,const char *name1,const char *name2);
-void checktime(char *str);
+long int findSize(const char *file_name);
+
 int main(int argc, char *argv[]){
     char *name1=argv[1];
     char *name2=argv[2];
+    double macro;
+    double milli;
+    struct timeval start, end;
+    //step 2
+    gettimeofday(&start,NULL);
     step2(argc,name1,name2);
+    gettimeofday(&end,NULL);
+
+    macro= ((end.tv_usec - start.tv_usec)/1000);
+    milli=macro*0.001;
+    //milli= ((seconds * 1000)+ end.tv_usec)-(start.tv_usec);
+    printf("Step 2 took %lf macroseconds",macro);
+    printf("Step 2 took %lf milliseconds",milli);
+
+    return 0;
 }//main
+
 long int findSize(const char *file_name)
 {
     struct stat st; /*declare stat variable*/
@@ -108,11 +124,6 @@ void step2(int argc,const char *name1,const char *name2){
     free(arr1);
     free(arr2);
     free(differencesInFile2);
-    //figuring the length of time it took
-    struct timeval end;
-    printf("Step 2 took ");
-    printf("%d",gettimeofday(&end,NULL));
-    printf(" milliseconds\n");
 }
 /*
 void checktime(){
