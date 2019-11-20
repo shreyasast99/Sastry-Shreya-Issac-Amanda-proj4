@@ -6,6 +6,7 @@
 #include <sys/time.h>
 #include <stdlib.h>
 void step2(int argc,const char *name1,const char *name2);
+void checktime(char *str);
 int main(int argc, char *argv[]){
     char *name1=argv[1];
     char *name2=argv[2];
@@ -39,8 +40,6 @@ void step2(int argc,const char *name1,const char *name2){
     char char2=getc(input2);
     char *arr1= (char *) malloc(findSize(name1)*sizeof(char));
     char *arr2=(char *) malloc(findSize(name2)*sizeof(char));
-    //char arr1[]=new char[findSize(name1)];
-    //char arr2[]=new char[findSize(name2)];
     int count1=0;
     int count2=0;
     while((char1!=EOF)){
@@ -56,10 +55,12 @@ void step2(int argc,const char *name1,const char *name2){
     //size of both arrays
     int size1 = count1;
     int size2 = count2;
+    /*
     printf("size: %d\n",size1);
     for(int i=0;i<size1;i++){
-        printf("arr1: %c\n",arr1[i]);
+      printf("arr1: %c\n",arr1[i]);
     }
+    */
     int sizeOfNewArr=0;
     //if size1 is bigger
     if(size1>=size2){
@@ -78,13 +79,12 @@ void step2(int argc,const char *name1,const char *name2){
         //TESTING
         for(int i=0;i<sizeOfNewArr;i++){
            //printf("diff contents: %c\n",differencesInFile2[i]);
-            printf("diff: %c\n",differencesInFile2[i]);
+           // printf("diff: %c\n",differencesInFile2[i]);
         }
     }
     
     //if size2 is bigger
-    if(size1<size2){
-        
+    if(size1<size2){   
         differencesInFile2=(char *) malloc(size2*sizeof(char));
         //char differencesInFile2[]=new char[size2];
         for(int i=0;i<size1;i++){
@@ -92,29 +92,41 @@ void step2(int argc,const char *name1,const char *name2){
                 //put in new array
                 differencesInFile2[sizeOfNewArr]=arr2[i];
                 sizeOfNewArr++;
-                printf("diff: %c\n",differencesInFile2[i]);
+                //printf("diff: %c\n",differencesInFile2[i]);
             }
         }
-        for(int j=0;j<(size2-size1);j++){
-            differencesInFile2[sizeOfNewArr+j]=arr2[size1+j];
-            
+        for(int j=sizeOfNewArr;j<size2;j++){
+            differencesInFile2[sizeOfNewArr]=arr2[sizeOfNewArr];
+            sizeOfNewArr++;
         }
     }
-  
-    
-    
     //writing in the differences into new file
     FILE *fp=fopen("differencesFoundInFile2.txt","w");//new file
     fwrite(differencesInFile2,1,sizeOfNewArr,fp);
-    
     fclose(input1);
     fclose(input2);
-    //free(input1);
-    //free(input2);
-    //free(arr1);
-    //free(arr2);
-    //free(differencesInFile2);
+    free(arr1);
+    free(arr2);
+    free(differencesInFile2);
+    //figuring the length of time it took
+    struct timeval end;
+    printf("Step 2 took ");
+    printf("%d",gettimeofday(&end,NULL));
+    printf(" milliseconds\n");
 }
+/*
+void checktime(){
+  unsigned long long count;
+  struct timeval end;
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  if(tv.tv_sec >= end.tv_sec && tv.tv_usec >=end.tv_usec){
+    printf("%s count=%lld\n", count);
+    exit(0);
+  }
+}
+*/
+
 /*
 void step1(){
     while(running==1){
