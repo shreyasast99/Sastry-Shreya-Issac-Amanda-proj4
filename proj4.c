@@ -126,10 +126,11 @@ void step2(int argc,const char *name1,const char *name2){
 }
 
 void step1(int argc,const char *name1,const char *name2){
-    char *charVal1=(char*)malloc(sizeof(char));
-    char *charVal2=(char*)malloc(sizeof(char));
+    // char *charVal1=(char*)malloc(sizeof(char));
+    //char *charVal2=(char*)malloc(sizeof(char));
     FILE *input1=fopen(name1,"r");//opened the files
     FILE *input2=fopen(name2,"r");
+    FILE *fp=fopen("differencesFoundInFile1.txt","w");//new file
     if((input1==NULL||input2==NULL)&&(argc==3)){
         printf("There was an error reading a file.\n");
         exit(0);
@@ -138,11 +139,25 @@ void step1(int argc,const char *name1,const char *name2){
         printf("Usage: proj4.out <file1> <file2>\n");
         exit(0);
     }
-    
+    char char1=getc(input1);
+    char char2=getc(input2);
+    int count1=0;
+    while((char1!=EOF)){
+        if(char1!=char2){
+            fputc(char1,fp);
+        }
+        char1=getc(input1);//gets next char
+        char2=getc(input2);//get next char
+        count1++;
+    }
+
+
+    /*
     FILE *fp=fopen("differencesFoundInFile1.txt","w");//new file
     while(fread(charVal1,1,1,input1)>0){
         if((fread(charVal2,1,1,input2)<=0)||(charVal1[0]!=charVal2[0])){
             fwrite(charVal1,1,1,fp);
         }
     }
+    */
 }
