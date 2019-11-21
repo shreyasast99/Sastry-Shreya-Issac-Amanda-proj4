@@ -7,24 +7,36 @@
 #include <stdlib.h>
 void step2(int argc,const char *name1,const char *name2);
 long int findSize(const char *file_name);
-
+void step1(int argc,const char *name1,const char *name2);
 int main(int argc, char *argv[]){
     char *name1=argv[1];
     char *name2=argv[2];
     double macro;
     double milli;
+    double macro1;
+    double milli1;
+    struct timeval start1,end1;
+    //step 2
+    gettimeofday(&start1,NULL);
+    step1(argc,name1,name2);
+    gettimeofday(&end1,NULL);
+
+    macro1= (end1.tv_usec - start1.tv_usec);
+    milli1=macro1*0.001;
+    
+    printf("Step 1 took %lf milliseconds\n",milli1);
+    
     struct timeval start, end;
     //step 2
     gettimeofday(&start,NULL);
     step2(argc,name1,name2);
     gettimeofday(&end,NULL);
 
-    macro= ((end.tv_usec - start.tv_usec)/1000);
+    macro= (end.tv_usec - start.tv_usec);
     milli=macro*0.001;
-    //milli= ((seconds * 1000)+ end.tv_usec)-(start.tv_usec);
-    printf("Step 2 took %lf macroseconds",macro);
-    printf("Step 2 took %lf milliseconds",milli);
-
+    
+    printf("Step 2 took %lf milliseconds\n",milli);
+    
     return 0;
 }//main
 
@@ -71,12 +83,6 @@ void step2(int argc,const char *name1,const char *name2){
     //size of both arrays
     int size1 = count1;
     int size2 = count2;
-    /*
-    printf("size: %d\n",size1);
-    for(int i=0;i<size1;i++){
-      printf("arr1: %c\n",arr1[i]);
-    }
-    */
     int sizeOfNewArr=0;
     //if size1 is bigger
     if(size1>=size2){
@@ -89,13 +95,6 @@ void step2(int argc,const char *name1,const char *name2){
                 //printf("diff: %c\n",differencesInFile2[i]);
                 sizeOfNewArr++;
             }
-        }
-        printf("diffSize: %d\n",sizeOfNewArr);
-        printf("size2: %d\n",size2);
-        //TESTING
-        for(int i=0;i<sizeOfNewArr;i++){
-           //printf("diff contents: %c\n",differencesInFile2[i]);
-           // printf("diff: %c\n",differencesInFile2[i]);
         }
     }
     
@@ -138,23 +137,25 @@ void checktime(){
 }
 */
 
-/*
-void step1(){
-    while(running==1){
-        char num[80];
-        scanf("%[^\n]",num);//takes in entire line of input
-        char char1;
-        if((char1=getchar())==EOF){
-            sleep(60);
-            printf("The sum is %f\n",tot);
-            printf("Program ended after sleeping for 60 seconds. \n");
-            printf("\n");
-            running=0; 
-        }
-        else{
-            tot+=atof(num);
-        }
+
+void step1(int argc,const char *name1,const char *name2){
+    char *charVal1=(char*)malloc(sizeof(char));
+    char *charVal2=(char*)malloc(sizeof(char));
+    FILE *input1=fopen(name1,"r");//opened the files
+    FILE *input2=fopen(name2,"r");
+    if((input1==NULL||input2==NULL)&&(argc==3)){
+        printf("There was an error reading a file.\n");
+        exit(0);
+    }
+    if(argc!=3){
+        printf("Usage: proj4.out <file1> <file2>\n");
+        exit(0);
     }
     
+    FILE *fp=fopen("differencesFoundInFile1.txt","w");//new file
+    while(fread(charVal1,1,1,input1)>0){
+        if((fread(charVal2,1,1,input2)<=0)||(charVal1[0]!=charVal2[0])){
+            fwrite(charVal1,1,1,fp);
+        }
+    }
 }
-*/
