@@ -124,19 +124,6 @@ void step2(int argc,const char *name1,const char *name2){
     free(arr2);
     free(differencesInFile2);
 }
-/*
-void checktime(){
-  unsigned long long count;
-  struct timeval end;
-  struct timeval tv;
-  gettimeofday(&tv,NULL);
-  if(tv.tv_sec >= end.tv_sec && tv.tv_usec >=end.tv_usec){
-    printf("%s count=%lld\n", count);
-    exit(0);
-  }
-}
-*/
-
 
 void step1(int argc,const char *name1,const char *name2){
     char *charVal1=(char*)malloc(sizeof(char));
