@@ -8,6 +8,11 @@
 void step2(int argc,const char *name1,const char *name2);
 long int findSize(const char *file_name);
 void step1(int argc,const char *name1,const char *name2);
+
+/*
+ *This method compares two files and returns the differences.
+ *There are two steps for this process.
+ */
 int main(int argc, char *argv[]){
   char *name1=argv[1];
   char *name2=argv[2];
@@ -20,37 +25,36 @@ int main(int argc, char *argv[]){
   gettimeofday(&start1,NULL);
   step1(argc,name1,name2);
   gettimeofday(&end1,NULL);
-  
   macro1= (end1.tv_usec - start1.tv_usec);
   milli1=macro1*0.001;
-  
   printf("Step 1 took %lf milliseconds\n",milli1);
-  
   struct timeval start, end;
   //step 2
   gettimeofday(&start,NULL);
   step2(argc,name1,name2);
   gettimeofday(&end,NULL);
-  
   macro= (end.tv_usec - start.tv_usec);
   milli=macro*0.001;
-  
   printf("Step 2 took %lf milliseconds\n",milli);
-  
   return 0;
 }//main
 
+/*
+ *This method is used to find the size of each file.
+ */
 long int findSize(const char *file_name)
 {
   struct stat st; /*declare stat variable*/
-  
   /*get the size using stat()*/
-  
   if(stat(file_name,&st)==0)
     return (st.st_size);
   else
     return -1;
 }
+/*
+ *This method is for step 2. This is used to give the differences of 
+ *file 1 and file 2.
+ */
 void step2(int argc,const char *name1,const char *name2){
   char *differencesInFile2;
   FILE *input1=fopen(name1,"r");//opened the files
@@ -97,7 +101,6 @@ void step2(int argc,const char *name1,const char *name2){
       }
     }
   }
-  
   //if size2 is bigger
   if(size1<size2){   
     differencesInFile2=(char *) malloc(size2*sizeof(char));
@@ -125,6 +128,10 @@ void step2(int argc,const char *name1,const char *name2){
   free(differencesInFile2);
 }
 
+/*
+ *This method is for step 1. This is to find the differences between file1
+ *and file 2.
+ */
 void step1(int argc,const char *name1,const char *name2){
   // char *charVal1=(char*)malloc(sizeof(char));
   //char *charVal2=(char*)malloc(sizeof(char));

@@ -1,0 +1,22 @@
+Sastry-Shreya-Issac-Amanda-proj4:
+total 520
+-rw-r--r-- 1 ugrad 164601 Nov 19 00:27 alice1.txt
+-rw-r--r-- 1 ugrad 164601 Nov 19 00:27 alice2.txt
+-rw-r--r-- 1 ugrad     88 Nov 22 19:49 differencesFoundInFile1.txt
+-rw-r--r-- 1 ugrad     11 Nov 20 01:00 #differencesFoundInFile2.txt#
+-rw-r--r-- 1 ugrad     88 Nov 22 19:49 differencesFoundInFile2.txt
+-rw-r--r-- 1 ugrad      4 Nov 20 01:00 differencesFoundInFile2.txt~
+-rw-r--r-- 1 ugrad 115072 Nov 19 00:27 examples.tar.gz
+-rw-r--r-- 1 ugrad     13 Nov 19 00:27 input1.txt
+-rw-r--r-- 1 ugrad     13 Nov 19 00:27 input2.txt
+-rw-r--r-- 1 ugrad      6 Nov 19 00:27 input3.txt
+-rw-r--r-- 1 ugrad      2 Nov 19 00:27 input4.txt
+-rw-r--r-- 1 ugrad      2 Nov 19 00:27 input5.txt
+-rw-r--r-- 1 ugrad      7 Nov 19 00:27 input6.txt
+-rw-r--r-- 1 ugrad    226 Nov 19 00:27 Makefile
+-rw-r--r-- 1 ugrad   4286 Nov 22 19:58 proj4.c
+-rw-r--r-- 1 ugrad    846 Nov 19 00:27 proj4.c~
+-rwxr-xr-x 1 ugrad  14555 Nov 22 19:58 proj4.out
+-rw-r--r-- 1 ugrad    809 Nov 22 19:52 README.md
+-rw-r--r-- 1 ugrad      0 Nov 22 20:00 rec35993
+/home/ugrads/issac/Sastry-Shreya-Issac-Amanda-proj4:/home/work/cs1730a

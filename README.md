@@ -1,7 +1,7 @@
 # Project 4
 
 Shreya Sastry (811-319-663)
-Amanda Issac ()
+Amanda Issac (811-485-979)
     
 ## Instructions
 
