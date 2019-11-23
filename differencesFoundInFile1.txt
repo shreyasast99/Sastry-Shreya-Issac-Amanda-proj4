@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 cat!
+=======
+showingAlice
+>>>>>>> 1ff3bd1d75086928299aafe3529e34efd853ddb5
